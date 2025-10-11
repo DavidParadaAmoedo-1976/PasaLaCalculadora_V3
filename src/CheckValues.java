@@ -15,7 +15,6 @@ public class CheckValues {
     public static int correctInteger(String dato, int minInclusive, int maxInclusive) {
         int num = 0;
         boolean datoOk = false;
-
         while (!datoOk) {
             System.out.print(dato);         // Presenta en pantalla el mensaje que se introdujo en la llamada.
             String input = sc.nextLine();   // guarda la entrada del teclado en un String llamado input.
@@ -26,7 +25,6 @@ public class CheckValues {
                 } else {
                     // Si el número no esta dentro del rango muestra el mensaje y vuelve al principio del While.
                     System.out.println("El valor '" + input + "' no está entre " + minInclusive + " y " + maxInclusive);
-
                 }
             } catch (NumberFormatException e) {
                 // Muestra el mensaje si lo que se introduce por teclado no es un número entero.
@@ -37,7 +35,7 @@ public class CheckValues {
     }
 
     /**
-     * Realiza la comprobacion del entero, pero si se introduce un -1, crea un número en random dentro del rango indicado.
+     * Realiza la comprobación del entero, pero si se introduce un -1, crea un número en random dentro del rango indicado.
      * @param dato
      * @param minInclusive
      * @param maxInclusive
@@ -60,7 +58,7 @@ public class CheckValues {
                 if (num >= minInclusive && num <= maxInclusive) {
                     datoOk = true;
                 } else {
-                    System.out.println("El valor debe estar entre " + minInclusive + " y " + maxInclusive);
+                    System.out.println("El valor '" + input + "' no está entre " + minInclusive + " y " + maxInclusive);
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error: Introduzca un número válido.");
@@ -80,7 +78,7 @@ public class CheckValues {
             try {
                 name = sc.nextLine().trim();
             } catch (Exception e) {
-                System.out.println("Error al leer el nombre. Inténtelo nuevamente.");
+                System.out.println("Error al leer el nombre. Inténtelo de nuevo.");
                 name = ""; // Reinicia para que el bucle continúe
             }
         } while (name.length() < 3 || !name.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+"));
@@ -89,22 +87,21 @@ public class CheckValues {
 
     /**
      * Comprueba si el número que introduce el jugador es válido con respecto al último número
-     * @param ultimoNumero
-     * @param numeroEnJuego
+     * @param lastNumber
+     * @param numberAtStake
      * @return
      */
-    static boolean comprobarSiSonValidos(int ultimoNumero, int numeroEnJuego) {
-        int[] posicionUltimo = checkPosition(ultimoNumero); // Crea un array con la posicion fila y columna del número a comprobar
-        int[] posicionNuevo = checkPosition(numeroEnJuego); // con respecto a una matriz ya creada.
-
-        if (ultimoNumero == numeroEnJuego){ // Comprueba que el número que se introduce no es el mismo que el anterior.
+    static boolean comprobarSiSonValidos(int lastNumber, int numberAtStake) {
+        int[] lastPosition = checkPosition(lastNumber); // Crea un array con la posicion fila y columna del número a comprobar
+        int[] newPosition = checkPosition(numberAtStake); // con respecto a una matriz ya creada.
+        if (lastNumber == numberAtStake){ // Comprueba que el número que se introduce no es el mismo que el anterior.
             System.out.println("No se puede repetir el último número.\n");
             return false;
         }
         return
-                posicionUltimo[0] == posicionNuevo[0] // Comprueba que estén en la misma fila.
+                lastPosition[0] == newPosition[0] // Comprueba que estén en la misma fila.
                         ||
-                        posicionUltimo[1] == posicionNuevo[1] // comprueba que estén en la misma columna.
+                lastPosition[1] == newPosition[1] // comprueba que estén en la misma columna.
                 ;
     }
 
@@ -113,16 +110,14 @@ public class CheckValues {
      * @param number
      * @return
      */
-
     private static int[] checkPosition(int number) {
-        for (int row = 0; row < 3; row++) {      // Recorre las filas.
-            for (int column = 0; column < 3; column++) {     // Recorre las columnas.
-                if (Program.MATRIZ[row][column] == number) {  // Cuando el número a comprobar coincide con la matriz
-                    return new int[]{row, column};    // envía un array con la posición [fila, columna]
+        for (int row = 0; row < 3; row++) {                     // Recorre las filas.
+            for (int column = 0; column < 3; column++) {        // Recorre las columnas.
+                if (Program.MATRIZ[row][column] == number) {    // Cuando el número a comprobar coincide con la matriz
+                    return new int[]{row, column};              // envía un array con la posición [fila, columna]
                 }
             }
         }
         return null; // No encontrado
     }
-
 }
