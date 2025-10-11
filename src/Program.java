@@ -20,8 +20,9 @@ public class Program {
 
     public static void printData() {
         System.out.println("\nEl resultado del juego es:");
-        for (int i = 0; i < numberOfPlayers; i++){
-            System.out.println(i+1 + ".- " + players[i].getName() + " ten " + players[i].getLostGames() + " partidas perdidas.");
+        for(Players player : players){
+            int contador = 1;
+            System.out.println(contador + ".- " + player.getName() + " ten " + player.getLostGames() + "partidas perdidas.");
         }
     }
 
