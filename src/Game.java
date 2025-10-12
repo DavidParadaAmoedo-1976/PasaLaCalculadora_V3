@@ -35,7 +35,7 @@ public class Game {
                             totalInPlay = totalInPlay + numberAtStake;
                             lastNumber = numberAtStake;
                             if (totalInPlay >= maxNumber) {
-                                System.out.println("Fin de la partida, " + orderOfPlayers[i].getName() + " ha perdido la partida.");
+                                System.out.println("\nFin de la partida, " + orderOfPlayers[i].getName() + " ha perdido la partida.");
                                 orderOfPlayers[i].addLostGames();
                                 anotherPlay();
                             }
@@ -64,16 +64,18 @@ public class Game {
      * Pregunta si quieres jugar otra partida o salir del juego, si la respuesta es si inicializa las variables del juego
      */
     public static void anotherPlay() {
-            int respuesta = CheckValues.correctInteger("\n¿Quieres jugar otra partida? " +
-                    "\n\t1.- Jugar otra vez." +
-                    "\n\t0.- Salir",0,1);
-            if (respuesta == 0) {
-                Program.printData();
-                System.exit(0);
-            } else {
-            lastNumber = 0;
-            totalInPlay = 0;
-            play(); // Jugar una partida
+        clear();
+        int respuesta = CheckValues.correctInteger("\n¿Quieres jugar otra partida? " +
+                "\n\t1.- Jugar otra vez." +
+                "\n\t0.- Salir" +
+                "Elige opción: ",0,1);
+        if (respuesta == 0) {
+            Program.printData();
+            System.exit(0);
+        } else {
+        lastNumber = 0;
+        totalInPlay = 0;
+        play(); // Jugar una partida
         }
     }
     /**
