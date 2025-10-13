@@ -32,7 +32,7 @@ public class Program {
      * Recoge los nombres de todos los jugadores y los guarda en una lista de "objetos". trata a cada jugador como si fuese un objeto.
      */
     public static void enterNames() {
-        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores asta un máximo de 10: ",MIN_OF_PLAYERS, MIN_OF_PLAYERS);
+        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores asta un máximo de 10: ",MIN_OF_PLAYERS, MAX_OF_PLAYERS);
         players = new Players[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++ ){
             String name = CheckValues.correctName();
