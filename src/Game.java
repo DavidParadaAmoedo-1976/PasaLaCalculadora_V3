@@ -8,9 +8,9 @@ public class Game {
 
     /**
      * Cambia el orden de los jugadores y muestra el orden en el que van a jugar, coge el número para el límite de la partida.
-     * Realiza todas las funciones del juego para cada jugador ( presenta la matriz a cada jugador, le indica cual es el último número,
-     * el total en el que va el juego y donde esta el límite, solicita el número para jugar y realiza todas las comprobaciones y
-     * operaciones, tambien presenta el mensaje del fin de la partida.
+     * Realiza todas las funciones del juego para cada jugador ( presenta la matriz a cada jugador, le indica cuál es el último número,
+     * el total en el que va el juego y donde está el límite, solicita el número para jugar y realiza todas las comprobaciones y
+     * operaciones, también presenta el mensaje del fin de la partida.
      */
     public static void play(){
         clear();
@@ -57,7 +57,7 @@ public class Game {
         int counter = 1;    // Inicializa el contador
         for(Players player : orderOfPlayers){   // for each, recorre todos los nombres de la lista de 1 en 1.
             System.out.println(counter +".- " + player.getName());  // Imprime el nombre de la lista.
-            counter ++; // incrementa el contador, no es necesario contador, solo lo utilizo para poner un indice a los nombres por estética.
+            counter ++; // incrementa el contador, no es necesario contador, solo lo utilizo para poner un índice a los nombres por estética.
         }
         System.out.println();
     }

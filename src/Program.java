@@ -23,7 +23,7 @@ public class Program {
         System.out.println("\nEl resultado del juego es:");
         int contador = 1;
         for(Players player : players){
-            System.out.println(contador + ".- " + player.getName() + " tiene " + player.getLostGames() + "partidas perdidas.");
+            System.out.println(contador + ".- " + player.getName() + " tiene " + player.getLostGames() + " partidas perdidas.");
             contador ++;
         }
     }
@@ -32,7 +32,7 @@ public class Program {
      * Recoge los nombres de todos los jugadores y los guarda en una lista de "objetos". trata a cada jugador como si fuese un objeto.
      */
     public static void enterNames() {
-        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores asta un máximo de 10: ",MIN_OF_PLAYERS, MAX_OF_PLAYERS);
+        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores hasta un máximo de 10: ",MIN_OF_PLAYERS, MAX_OF_PLAYERS);
         players = new Players[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++ ){
             String name = CheckValues.correctName();
@@ -51,8 +51,8 @@ public class Program {
             orderOfGame[i] = players[i];            // realiza una copia.
         }
         Random rand = new Random(); // Inicializa la Clase Ramdon.
-        for (int i = numberOfPlayers - 1; i > 0; i--) { //recorre la lista hacia atras para evitar un error que produce "nextInt(0)"
-            int j = rand.nextInt(i + 1); // realiza un random entre 1 y el numero de jugadores
+        for (int i = numberOfPlayers - 1; i > 0; i--) { // Recorre la lista hacia atras para evitar un error que produce "nextInt(0)"
+            int j = rand.nextInt(i + 1); // Realiza un random entre 1 y el numero de jugadores
             Players temp = orderOfGame[i];      //
             orderOfGame[i] = orderOfGame[j];    // Intercambia la posicion del nombre en la lista por la posicion aleatoria.
             orderOfGame[j] = temp;              //

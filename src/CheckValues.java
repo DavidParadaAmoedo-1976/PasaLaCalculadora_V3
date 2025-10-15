@@ -20,7 +20,7 @@ public class CheckValues {
             String input = sc.nextLine();   // guarda la entrada del teclado en un String llamado input.
             try {
                 num = Integer.parseInt(input);  // Convierte input a un entero y lo guarda en la variable num.
-                if (num >= minInclusive && num <= maxInclusive) {   // Comprueba que num este entre el rango introducido en la llamada.
+                if (num >= minInclusive && num <= maxInclusive) {   // Comprueba que num esté entre el rango introducido en la llamada.
                     datoOk = true;  // Sale del bucle while
                 } else {
                     // Si el número no esta dentro del rango muestra el mensaje y vuelve al principio del While.
@@ -31,7 +31,7 @@ public class CheckValues {
                 System.out.println("Error: Introduzca un número válido.");
             }
         }
-        return num; // Al salir del while envia el número por que cumple los parametros solicitados.
+        return num; // Al salir del while envia el número porque cumple los parametros solicitados.
     }
 
     /**
@@ -54,7 +54,7 @@ public class CheckValues {
                     // Crea un número aleatorio de la cantidad de números que hay entre el minimo y el máximo solicitado y al sumarle el mínimo le indicas donde tiene que empezar la primera cifra.
                     num = rand.nextInt(maxInclusive-minInclusive + 1) + minInclusive;
                 }
-                // Si la cifra no es -1, comprueba que este en el rango correcto.
+                // Si la cifra no es -1, comprueba que esté en el rango correcto.
                 if (num >= minInclusive && num <= maxInclusive) {
                     datoOk = true;
                 } else {
@@ -92,7 +92,7 @@ public class CheckValues {
      * @return
      */
     static boolean comprobarSiSonValidos(int lastNumber, int numberAtStake) {
-        int[] lastPosition = checkPosition(lastNumber); // Crea un array con la posicion fila y columna del número a comprobar
+        int[] lastPosition = checkPosition(lastNumber); // Crea un array con la posición fila y columna del número a comprobar
         int[] newPosition = checkPosition(numberAtStake); // con respecto a una matriz ya creada.
         if (lastNumber == numberAtStake){ // Comprueba que el número que se introduce no es el mismo que el anterior.
             System.out.println("No se puede repetir el último número.\n");
