@@ -126,3 +126,34 @@ public class CheckValues {
         return null; // No encontrado
     }
 }
+/*
+public static int leerEntero(String mensaje, int minInclusive, int maxInclusive, boolean permitirAleatorio) {
+    int num = 0;
+    boolean datoOk = false;
+    Random rand = new Random();
+
+    while (!datoOk) {
+        System.out.print(mensaje);
+        String input = sc.nextLine();
+
+        try {
+            num = Integer.parseInt(input);
+
+            if (permitirAleatorio && num == -1) {
+                num = rand.nextInt(maxInclusive - minInclusive + 1) + minInclusive;
+            }
+
+            if (num >= minInclusive && num <= maxInclusive) {
+                datoOk = true;
+            } else {
+                System.out.println("El valor '" + input + "' no está entre " + minInclusive + " y " + maxInclusive);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Introduzca un número válido.");
+        }
+    }
+
+    return num;
+}
+
+ */
