@@ -7,6 +7,7 @@ public class CheckValues {
     /**
      * Ponemos mensaje y valor máximo y mínimo del entero, comprueba que sea un número entero y esté dentro del rango indicado,
      * también hace un control de las excepciones, vuelve a solicitar el número en caso de que este no sea válido.
+     *
      * @param dato
      * @param minInclusive
      * @param maxInclusive
@@ -36,6 +37,7 @@ public class CheckValues {
 
     /**
      * Realiza la comprobación del entero, pero si se introduce un -1, crea un número en random dentro del rango indicado.
+     *
      * @param dato
      * @param minInclusive
      * @param maxInclusive
@@ -49,10 +51,10 @@ public class CheckValues {
             String input = sc.nextLine();
             try {
                 num = Integer.parseInt(input);
-                if (num == -1){ // Comprueba si el número introducido es -1
+                if (num == -1) { // Comprueba si el número introducido es -1
                     Random rand = new Random(); // Inicializa la clase Random
                     // Crea un número aleatorio de la cantidad de números que hay entre el minimo y el máximo solicitado y al sumarle el mínimo le indicas donde tiene que empezar la primera cifra.
-                    num = rand.nextInt(maxInclusive-minInclusive + 1) + minInclusive;
+                    num = rand.nextInt(maxInclusive - minInclusive + 1) + minInclusive;
                 }
                 // Si la cifra no es -1, comprueba que esté en el rango correcto.
                 if (num >= minInclusive && num <= maxInclusive) {
@@ -69,6 +71,7 @@ public class CheckValues {
 
     /**
      * Comprueba que se introduce un nombre válido sin símbolos y con una longitud mínima de 3 caracteres.
+     *
      * @return
      */
     public static String correctName() {
@@ -87,6 +90,7 @@ public class CheckValues {
 
     /**
      * Comprueba si el número que introduce el jugador es válido con respecto al último número
+     *
      * @param lastNumber
      * @param numberAtStake
      * @return
@@ -94,19 +98,20 @@ public class CheckValues {
     static boolean comprobarSiSonValidos(int lastNumber, int numberAtStake) {
         int[] lastPosition = checkPosition(lastNumber); // Crea un array con la posición fila y columna del número a comprobar
         int[] newPosition = checkPosition(numberAtStake); // con respecto a una matriz ya creada.
-        if (lastNumber == numberAtStake){ // Comprueba que el número que se introduce no es el mismo que el anterior.
+        if (lastNumber == numberAtStake) { // Comprueba que el número que se introduce no es el mismo que el anterior.
             System.out.println("No se puede repetir el último número.\n");
             return false;
         }
         return
                 lastPosition[0] == newPosition[0] // Comprueba que estén en la misma fila.
                         ||
-                lastPosition[1] == newPosition[1] // comprueba que estén en la misma columna.
+                        lastPosition[1] == newPosition[1] // comprueba que estén en la misma columna.
                 ;
     }
 
     /**
      * Nos da la posición del numero en la Matriz.
+     *
      * @param number
      * @return
      */
