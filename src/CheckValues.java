@@ -64,9 +64,8 @@ public class CheckValues {
 
     /**
      * Comprueba si el número que introduce el jugador es válido con respecto al último número
-     *
-     * @param lastNumber
-     * @param numberAtStake
+     * @param lastNumber    Último número usado.
+     * @param numberAtStake Número introducido en ese turno para el juego
      * @return
      */
     static boolean comprobarSiSonValidos(int lastNumber, int numberAtStake) {

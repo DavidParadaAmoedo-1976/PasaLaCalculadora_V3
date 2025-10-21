@@ -14,12 +14,13 @@ public class Game {
      * operaciones, también presenta el mensaje del fin de la partida.
      */
     public static void play() {
+        boolean endGame = true;
         clear();
         orderOfPlayers = Program.shufflePlayers(); // Desordenar antes de cada partida
         OrderPlayers();
         maxNumber = CheckValues.correctInteger("Introduce el límite para la partida, debe estar entre 10 y 99, o pulsa -1 para que el juego decida una cifra aleatoria: ", LIMIT_MIN, LIMIT_MAX, true);
         System.out.println("El número maximo es " + maxNumber);
-        while (true) {
+        while (endGame) {
             for (Players orderOfPlayer : orderOfPlayers) { // Recorre todos los elementos del array "orderOfPlayer"
                 Program.showMatrix();
                 System.out.println();
@@ -41,6 +42,7 @@ public class Game {
                         System.out.println("\nFin de la partida, " + orderOfPlayer.getName() + " ha perdido la partida.");
                         orderOfPlayer.addLostGames();
                         anotherPlay();
+                        endGame = false;
                     }
                 }
             }
