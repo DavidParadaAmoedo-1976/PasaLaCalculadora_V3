@@ -49,7 +49,7 @@ public class CheckValues {
      * @return
      */
     public static String correctName() {
-        String name = ""; // Inicialización segura
+        String name;
         do {
             System.out.print("Introduzca su nombre (mínimo 3 caracteres, solo letras y espacios): ");
             try {
