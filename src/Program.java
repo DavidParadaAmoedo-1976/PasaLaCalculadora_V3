@@ -2,10 +2,10 @@ import java.util.Random;
 
 public class Program {
 
-    private static int numberOfPlayers;
-    private static Players players[];
-    private static final int MAX_OF_PLAYERS = 10, MIN_OF_PLAYERS = 2, LIMIT_OF_ROWS = 3 , LIMIT_OF_COLUMNS = 3;
-    static final int[][] MATRIZ = {
+    public static int numberOfPlayers;
+    public static Players[] players;
+    public static final int MAX_OF_PLAYERS = 10, MIN_OF_PLAYERS = 2, LIMIT_OF_ROWS = 3 , LIMIT_OF_COLUMNS = 3;
+    public static final int[][] MATRIZ = {
             {7, 8, 9},
             {4, 5, 6},
             {1, 2, 3}
@@ -29,10 +29,10 @@ public class Program {
     }
 
     /**
-     * Recoge los nombres de todos los jugadores y los guarda en una lista de "objetos". trata a cada jugador como si fuese un objeto.
+     * Recoge los nombres de todos los jugadores y los guarda en una lista de "objetos". Trata a cada jugador como si fuese un objeto.
      */
     public static void enterNames() {
-        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores, desde 2 hasta un máximo de 10: ",MIN_OF_PLAYERS, MAX_OF_PLAYERS,false);
+        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores, desde 2 hasta un máximo de 10: ", MIN_OF_PLAYERS, MAX_OF_PLAYERS,false);
         players = new Players[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++ ){
             String name = CheckValues.correctName();
@@ -43,18 +43,18 @@ public class Program {
 
     /**
      * Recibe la lista de los jugadores, la desordena y la guarda en otra lista para jugar la partida.
-      * @return
+      * @return Devuelve la lista con su nuevo orden.
      */
     public static Players[] shufflePlayers() {
         Players[] orderOfGame = new Players[numberOfPlayers]; // Inicializa la nueva lista.
         for (int i = 0; i < numberOfPlayers; i++) { // Recorre la lista
             orderOfGame[i] = players[i];            // realiza una copia.
         }
-        Random rand = new Random(); // Inicializa la Clase Ramdon.
-        for (int i = numberOfPlayers - 1; i > 0; i--) { // Recorre la lista hacia atras para evitar un error que produce "nextInt(0)"
+        Random rand = new Random(); // Inicializa la Clase Random.
+        for (int i = numberOfPlayers - 1; i > 0; i--) { // Recorre la lista hacia atrás para evitar un error que produce "nextInt(0)"
             int j = rand.nextInt(i + 1); // Realiza un random entre 1 y el número de jugadores
             Players temp = orderOfGame[i];      //
-            orderOfGame[i] = orderOfGame[j];    // Intercambia la posicion del nombre en la lista por la posicion aleatoria.
+            orderOfGame[i] = orderOfGame[j];    // Intercambia la posición del nombre en la lista por la posición aleatoria.
             orderOfGame[j] = temp;              //
         }
         return orderOfGame; // Devuelve la lista en el nuevo orden.
