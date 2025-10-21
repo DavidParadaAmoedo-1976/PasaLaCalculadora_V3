@@ -4,7 +4,7 @@ public class Program {
 
     private static int numberOfPlayers;
     private static Players players[];
-    private static final int MAX_OF_PLAYERS = 10, MIN_OF_PLAYERS = 2;
+    private static final int MAX_OF_PLAYERS = 10, MIN_OF_PLAYERS = 2, LIMIT_OF_ROWS = 3 , LIMIT_OF_COLUMNS = 3;
     static final int[][] MATRIZ = {
             {7, 8, 9},
             {4, 5, 6},
@@ -32,11 +32,11 @@ public class Program {
      * Recoge los nombres de todos los jugadores y los guarda en una lista de "objetos". trata a cada jugador como si fuese un objeto.
      */
     public static void enterNames() {
-        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores hasta un máximo de 10: ",MIN_OF_PLAYERS, MAX_OF_PLAYERS);
+        numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores, desde 2 hasta un máximo de 10: ",MIN_OF_PLAYERS, MAX_OF_PLAYERS,false);
         players = new Players[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++ ){
             String name = CheckValues.correctName();
-            System.out.println("Nombre leído para el jugador" + (i + 1) + ": " + name);
+            System.out.println("Nombre leído para el jugador " + (i + 1) + ": " + name);
             players[i] = new Players(name);
         }
     }
@@ -52,7 +52,7 @@ public class Program {
         }
         Random rand = new Random(); // Inicializa la Clase Ramdon.
         for (int i = numberOfPlayers - 1; i > 0; i--) { // Recorre la lista hacia atras para evitar un error que produce "nextInt(0)"
-            int j = rand.nextInt(i + 1); // Realiza un random entre 1 y el numero de jugadores
+            int j = rand.nextInt(i + 1); // Realiza un random entre 1 y el número de jugadores
             Players temp = orderOfGame[i];      //
             orderOfGame[i] = orderOfGame[j];    // Intercambia la posicion del nombre en la lista por la posicion aleatoria.
             orderOfGame[j] = temp;              //
@@ -64,9 +64,9 @@ public class Program {
      * Imprime la matriz en la consola.
      */
     public static void showMatrix(){
-        for (int i=0; i <3; i++) {  // Recorre las filas.
+        for (int i=0; i < LIMIT_OF_ROWS; i++) {  // Recorre las filas.
             System.out.print("\t");
-            for (int j = 0; j < 3; j++) {   // Recorre las columnas.
+            for (int j = 0; j < LIMIT_OF_COLUMNS; j++) {   // Recorre las columnas.
                 System.out.print(MATRIZ[i][j] + " "); // Imprime el valor en la posición de la matriz.
             }
             System.out.print("\n");

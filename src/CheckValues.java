@@ -2,61 +2,34 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class CheckValues {
-    static Scanner sc = new Scanner(System.in); // Inicializa el
+    static Scanner sc = new Scanner(System.in); // Inicializa el scanner
 
     /**
      * Ponemos mensaje y valor máximo y mínimo del entero, comprueba que sea un número entero y esté dentro del rango indicado,
      * también hace un control de las excepciones, vuelve a solicitar el número en caso de que este no sea válido.
-     *
-     * @param dato
+     * El booleano permite que se introduzca un -1, este, crea un número en random dentro del rango indicado.
+     * @param mensaje
      * @param minInclusive
      * @param maxInclusive
+     * @param allowRandom
      * @return
      */
-    public static int correctInteger(String dato, int minInclusive, int maxInclusive) {
+    public static int correctInteger(String mensaje, int minInclusive, int maxInclusive, boolean allowRandom) {
         int num = 0;
         boolean datoOk = false;
-        while (!datoOk) {
-            System.out.print(dato);         // Presenta en pantalla el mensaje que se introdujo en la llamada.
-            String input = sc.nextLine();   // guarda la entrada del teclado en un String llamado input.
-            try {
-                num = Integer.parseInt(input);  // Convierte input a un entero y lo guarda en la variable num.
-                if (num >= minInclusive && num <= maxInclusive) {   // Comprueba que num esté entre el rango introducido en la llamada.
-                    datoOk = true;  // Sale del bucle while
-                } else {
-                    // Si el número no esta dentro del rango muestra el mensaje y vuelve al principio del While.
-                    System.out.println("El valor '" + input + "' no está entre " + minInclusive + " y " + maxInclusive);
-                }
-            } catch (NumberFormatException e) {
-                // Muestra el mensaje si lo que se introduce por teclado no es un número entero.
-                System.out.println("Error: Introduzca un número válido.");
-            }
-        }
-        return num; // Al salir del while envia el número porque cumple los parametros solicitados.
-    }
+        Random rand = new Random();
 
-    /**
-     * Realiza la comprobación del entero, pero si se introduce un -1, crea un número en random dentro del rango indicado.
-     *
-     * @param dato
-     * @param minInclusive
-     * @param maxInclusive
-     * @return
-     */
-    public static int selectMax(String dato, int minInclusive, int maxInclusive) {
-        int num = 0;
-        boolean datoOk = false;
         while (!datoOk) {
-            System.out.print(dato);
+            System.out.print(mensaje);
             String input = sc.nextLine();
+
             try {
                 num = Integer.parseInt(input);
-                if (num == -1) { // Comprueba si el número introducido es -1
-                    Random rand = new Random(); // Inicializa la clase Random
-                    // Crea un número aleatorio de la cantidad de números que hay entre el minimo y el máximo solicitado y al sumarle el mínimo le indicas donde tiene que empezar la primera cifra.
+
+                if (allowRandom && num == -1) {
                     num = rand.nextInt(maxInclusive - minInclusive + 1) + minInclusive;
                 }
-                // Si la cifra no es -1, comprueba que esté en el rango correcto.
+
                 if (num >= minInclusive && num <= maxInclusive) {
                     datoOk = true;
                 } else {
@@ -66,6 +39,7 @@ public class CheckValues {
                 System.out.println("Error: Introduzca un número válido.");
             }
         }
+
         return num;
     }
 
@@ -126,34 +100,56 @@ public class CheckValues {
         return null; // No encontrado
     }
 }
+
+
+
 /*
-public static int leerEntero(String mensaje, int minInclusive, int maxInclusive, boolean permitirAleatorio) {
-    int num = 0;
-    boolean datoOk = false;
-    Random rand = new Random();
-
-    while (!datoOk) {
-        System.out.print(mensaje);
-        String input = sc.nextLine();
-
-        try {
-            num = Integer.parseInt(input);
-
-            if (permitirAleatorio && num == -1) {
-                num = rand.nextInt(maxInclusive - minInclusive + 1) + minInclusive;
+ /*
+    public static int correctInteger(String dato, int minInclusive, int maxInclusive) {
+        int num = 0;
+        boolean datoOk = false;
+        while (!datoOk) {
+            System.out.print(dato);         // Presenta en pantalla el mensaje que se introdujo en la llamada.
+            String input = sc.nextLine();   // guarda la entrada del teclado en un String llamado input.
+            try {
+                num = Integer.parseInt(input);  // Convierte input a un entero y lo guarda en la variable num.
+                if (num >= minInclusive && num <= maxInclusive) {   // Comprueba que num esté entre el rango introducido en la llamada.
+                    datoOk = true;  // Sale del bucle while
+                } else {
+                    // Si el número no esta dentro del rango muestra el mensaje y vuelve al principio del While.
+                    System.out.println("El valor '" + input + "' no está entre " + minInclusive + " y " + maxInclusive);
+                }
+            } catch (NumberFormatException e) {
+                // Muestra el mensaje si lo que se introduce por teclado no es un número entero.
+                System.out.println("Error: Introduzca un número válido.");
             }
-
-            if (num >= minInclusive && num <= maxInclusive) {
-                datoOk = true;
-            } else {
-                System.out.println("El valor '" + input + "' no está entre " + minInclusive + " y " + maxInclusive);
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Error: Introduzca un número válido.");
         }
+        return num; // Al salir del while envia el número porque cumple los parametros solicitados.
     }
 
-    return num;
-}
-
- */
+    public static int selectMax(String dato, int minInclusive, int maxInclusive) {
+        int num = 0;
+        boolean datoOk = false;
+        while (!datoOk) {
+            System.out.print(dato);
+            String input = sc.nextLine();
+            try {
+                num = Integer.parseInt(input);
+                if (num == -1) { // Comprueba si el número introducido es -1
+                    Random rand = new Random(); // Inicializa la clase Random
+                    // Crea un número aleatorio de la cantidad de números que hay entre el minimo y el máximo solicitado y al sumarle el mínimo le indicas donde tiene que empezar la primera cifra.
+                    num = rand.nextInt(maxInclusive - minInclusive + 1) + minInclusive;
+                }
+                // Si la cifra no es -1, comprueba que esté en el rango correcto.
+                if (num >= minInclusive && num <= maxInclusive) {
+                    datoOk = true;
+                } else {
+                    System.out.println("El valor '" + input + "' no está entre " + minInclusive + " y " + maxInclusive);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Introduzca un número válido.");
+            }
+        }
+        return num;
+    }
+*/
