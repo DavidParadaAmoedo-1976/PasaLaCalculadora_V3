@@ -34,7 +34,7 @@ public class Program {
     public static void enterNames() {
         numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores, desde 2 hasta un máximo de 10: ", MIN_OF_PLAYERS, MAX_OF_PLAYERS,false);
         players = new Players[numberOfPlayers];
-        for (int i = 0; i < numberOfPlayers; i++ ){
+        for (int i = 0; i < players.length; i++ ){
             String name = CheckValues.correctName();
             System.out.println("Nombre leído para el jugador " + (i + 1) + ": " + name);
             players[i] = new Players(name);
@@ -47,11 +47,11 @@ public class Program {
      */
     public static Players[] shufflePlayers() {
         Players[] orderOfGame = new Players[numberOfPlayers]; // Inicializa la nueva lista.
-        for (int i = 0; i < numberOfPlayers; i++) { // Recorre la lista
+        for (int i = 0; i < players.length; i++) { // Recorre la lista
             orderOfGame[i] = players[i];            // realiza una copia.
         }
         Random rand = new Random(); // Inicializa la Clase Random.
-        for (int i = numberOfPlayers - 1; i > 0; i--) { // Recorre la lista hacia atrás para evitar un error que produce "nextInt(0)"
+        for (int i = players.length - 1; i > 0; i--) { // Recorre la lista hacia atrás para evitar un error que produce "nextInt(0)"
             int j = rand.nextInt(i + 1); // Realiza un random entre 1 y el número de jugadores
             Players temp = orderOfGame[i];      //
             orderOfGame[i] = orderOfGame[j];    // Intercambia la posición del nombre en la lista por la posición aleatoria.
