@@ -8,11 +8,11 @@ public class CheckValues {
      * Ponemos mensaje y valor máximo y mínimo del entero, comprueba que sea un número entero y esté dentro del rango indicado,
      * también hace un control de las excepciones, vuelve a solicitar el número en caso de que este no sea válido.
      * El booleano permite que se introduzca un -1, este, crea un número en random dentro del rango indicado.
-     * @param mensaje   Texto que queremos que aparezca al solicitar el entero.
-     * @param minInclusive Valor mínimo del entero, este incluido en el límite inferior.
-     * @param maxInclusive Valor máximo del entero, este tambien incluido
-     * @param allowRandom indica si queromes que acepte el valor -1 fuera de los valores de los enteros (se necesita en una parte del juego)
-     * @return Devuelve el número introducido si cumple las condiciones, o el generado aleatorio en caso de aceptar -1.
+     * @param mensaje ->Texto que queremos que aparezca al solicitar el entero.
+     * @param minInclusive ->Valor mínimo del entero, este incluido en el límite inferior.
+     * @param maxInclusive ->Valor máximo del entero, este tambien incluido
+     * @param allowRandom ->indica si queromes que acepte el valor -1 fuera de los valores de los enteros (se necesita en una parte del juego)
+     * @return ->Devuelve el número introducido si cumple las condiciones, o el generado aleatorio en caso de aceptar -1.
      */
     public static int correctInteger(String mensaje, int minInclusive, int maxInclusive, boolean allowRandom) {
         int num = 0;
@@ -44,7 +44,7 @@ public class CheckValues {
     /**
      * Comprueba que se introduce un nombre válido sin símbolos y con una longitud mínima de 3 caracteres.
      *
-     * @return retorna el nombre cuando cumpla las condiciones
+     * @return ->Retorna el nombre cuando cumpla las condiciones
      *
      */
     public static String correctName() {
@@ -63,9 +63,9 @@ public class CheckValues {
 
     /**
      * Comprueba si el número que introduce el jugador es válido con respecto al último número
-     * @param lastNumber    Último número usado.
-     * @param numberAtStake Número introducido en ese turno para el juego
-     * @return
+     * @param lastNumber ->Último número usado.
+     * @param numberAtStake ->Número introducido en ese turno para el juego
+     * @return ->Retorna True o False, si el número a comprobar es válido respecto al último número en juego.
      */
     static boolean comprobarSiSonValidos(int lastNumber, int numberAtStake) {
         int[] lastPosition = checkPosition(lastNumber); // Crea un array con la posición fila y columna del número a comprobar
@@ -74,6 +74,7 @@ public class CheckValues {
             System.out.println("No se puede repetir el último número.\n");
             return false;
         }
+
         return
                 lastPosition[0] == newPosition[0] // Comprueba que estén en la misma fila.
                         ||                        // OR lógico, si se cumple 1 de las condiciones la salida sera True.
@@ -81,10 +82,10 @@ public class CheckValues {
     }
 
     /**
-     * Nos da la posición del numero en la Matriz.
+     * Nos da la posición del número en la Matriz.
      *
-     * @param number Número del que queremos saber en que posicion se encuentra en la matriz diseñada.
-     * @return
+     * @param number ->Número del que queremos saber en que posicion se encuentra en la matriz diseñada.
+     * @return ->Retorna la posición (fila, columna) del número a comprobar.
      */
     private static int[] checkPosition(int number) {
         for (int row = 0; row < 3; row++) {                     // Recorre las filas.

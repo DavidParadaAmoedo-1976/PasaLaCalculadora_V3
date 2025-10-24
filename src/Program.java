@@ -11,9 +11,10 @@ public class Program {
             {1, 2, 3}
     };
 
-    public static void main(String[] args) {
-        enterNames();
-        Game.play(); // Aquí se juega y se reordena en cada partida
+    static void main() {
+        Game.clear();   // Limpia la consola.
+        enterNames();   // Recoge el número de jugadores y sus nombres.
+        Game.play();    // Aquí se juega y se reordena en cada partida
     }
 
     /**
@@ -43,12 +44,12 @@ public class Program {
 
     /**
      * Recibe la lista de los jugadores, la desordena y la guarda en otra lista para jugar la partida.
-      * @return Devuelve la lista con su nuevo orden.
+      * @return ->Devuelve la lista con su nuevo orden.
      */
     public static Players[] shufflePlayers() {
         Players[] orderOfGame = new Players[numberOfPlayers]; // Inicializa la nueva lista.
         for (int i = 0; i < players.length; i++) { // Recorre la lista
-            orderOfGame[i] = players[i];            // realiza una copia.
+            orderOfGame[i] = players[i]; // realiza una copia, se puede hacer una copia con el método System.arraycopy, pero asi es mas visual.
         }
         Random rand = new Random(); // Inicializa la Clase Random.
         for (int i = players.length - 1; i > 0; i--) { // Recorre la lista hacia atrás para evitar un error que produce "nextInt(0)"
@@ -64,8 +65,9 @@ public class Program {
      * Imprime la matriz en la consola.
      */
     public static void showMatrix(){
+        System.out.println();
         for (int i=0; i < LIMIT_OF_ROWS; i++) {  // Recorre las filas.
-            System.out.print("\t");
+            System.out.print("\t\t");
             for (int j = 0; j < LIMIT_OF_COLUMNS; j++) {   // Recorre las columnas.
                 System.out.print(MATRIZ[i][j] + " "); // Imprime el valor en la posición de la matriz.
             }

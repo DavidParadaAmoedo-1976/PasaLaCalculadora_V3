@@ -23,6 +23,10 @@ public class Players {
     }
 
     //  Métodos
+
+    /**
+     * Metodo que incrementa en uno el número de partidas perdidas de un jugador, cuando este pierde.
+     */
     public void addLostGames(){
         this.lostGames ++;
     }

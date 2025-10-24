@@ -20,12 +20,17 @@ public class Game {
         OrderPlayers();                            // Muestra el orden de los jugadores en esta partida.
         // Guarda en maxNumber el número introducido por el usuario, despues de comprobar que esté dentro del rango y que sea un entero, el true le indica que acepte el -1 para hacerlo aleatorio.
         maxNumber = CheckValues.correctInteger("Introduce el límite para la partida, debe estar entre 10 y 99, o pulsa -1 para que el juego decida una cifra aleatoria: ", LIMIT_MIN, LIMIT_MAX, true);
-        System.out.println("El número límite para finalizar la partida  es :" + maxNumber); // Muestra el número en el que va a finalizar la partida.
+        System.out.println("El número límite para finalizar la partida  es: " + maxNumber); // Muestra el número en el que va a finalizar la partida.
         while (endGame) {
             for (Players orderOfPlayer : orderOfPlayers) { // Recorre todos los elementos del array "orderOfPlayer"
                 Program.showMatrix();   // Muestra la matriz de números.
                 System.out.println();
-                mensajeInfo();          // Muestra la información de la partida
+                if (lastNumber == 0){
+                    System.out.println("    *** Empieza la partida ***" +
+                            "\nEl juego finaliza en: " + maxNumber);
+                } else {
+                    mensajeInfo();          // Muestra la información de la partida
+                }
                 System.out.println("\nEs el turno de " + orderOfPlayer.getName() + ".\n");  // Muestra el nombre del jugador que está jugando.
                 // Recibe el número en juego del jugador que esta en turno en ese momento.
                 int numberAtStake = CheckValues.correctInteger("Introduce un número del 1 al 9 para jugar: ", NUM_MIN_PLAY, NUM_MAX_PLAY,false);
@@ -41,7 +46,7 @@ public class Game {
                     if (totalInPlay >= maxNumber) { // Comprueba si el total del juego es mayor o igual al número del límite de la partida.
                         clear();
                         mensajeInfo();
-                        System.out.println("\nFin de la partida, " + orderOfPlayer.getName() + " ha perdido la partida.");  // informa de quien ha perdido la partida si el total del juego a rebasado el límite.
+                        System.out.println("\nFin de la partida, " + orderOfPlayer.getName() + " ha perdido esta partida.");  // informa de quien ha perdido la partida si el total del juego a rebasado el límite.
                         orderOfPlayer.addLostGames();   // Añade una partida perdida en el contador del jugador que ha perdido.
                         anotherPlay();      // salta a la opción de seguir jugando.
                         endGame = false;
@@ -70,6 +75,7 @@ public class Game {
      * Pregunta si quieres jugar otra partida o salir del juego, si la respuesta es si inicializa las variables del juego
      */
     public static void anotherPlay() {
+        System.out.println("El juego consta de varias partidas, los resultados del Juego se mostraran al salir.\n");
         //  Muestra el mensaje y espera respuesta numérica.
         int respuesta = CheckValues.correctInteger("\n¿Quieres jugar otra partida? " +
                 "\n\t1.- Jugar otra vez." +
@@ -89,8 +95,8 @@ public class Game {
      * Mensaje de información del juego.
      */
     private static void mensajeInfo() {
-        System.out.println("El último número es: " + lastNumber +
-                           "\nEl total esta en: " + totalInPlay +
+        System.out.println(" El último número es: " + lastNumber +
+                           "\n    El total está en: " + totalInPlay +
                            "\nEl juego finaliza en: " + maxNumber);
     }
 
