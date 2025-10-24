@@ -31,7 +31,7 @@ public class Game {
                 } else {
                     mensajeInfo();          // Muestra la información de la partida
                 }
-                System.out.println("\nEs el turno de " + orderOfPlayer.getName() + ".\n");  // Muestra el nombre del jugador que está jugando.
+                System.out.println("\nEs el turno de " + orderOfPlayer.getNAME() + ".\n");  // Muestra el nombre del jugador que está jugando.
                 // Recibe el número en juego del jugador que esta en turno en ese momento.
                 int numberAtStake = CheckValues.correctInteger("Introduce un número del 1 al 9 para jugar: ", NUM_MIN_PLAY, NUM_MAX_PLAY,false);
                 if (lastNumber == 0) { //si el último número es 0 indica que es el primer número introducido, no comprueba, solo iguala el último número y el total, al número introducido.
@@ -45,8 +45,8 @@ public class Game {
                     lastNumber = numberAtStake;     // Indica que ahora este número sera el último introducido, para la comparación en el turno siguiente.
                     if (totalInPlay >= maxNumber) { // Comprueba si el total del juego es mayor o igual al número del límite de la partida.
                         clear();
-                        mensajeInfo();
-                        System.out.println("\nFin de la partida, " + orderOfPlayer.getName() + " ha perdido esta partida.");  // informa de quien ha perdido la partida si el total del juego a rebasado el límite.
+                        // informa de quien ha perdido la partida si el total del juego a rebasado el límite.
+                        System.out.println("El total esta en " + totalInPlay + ", la partida tenia un límite de " + maxNumber + ", " +  orderOfPlayer.getNAME() + " ha perdido esta partida.");
                         orderOfPlayer.addLostGames();   // Añade una partida perdida en el contador del jugador que ha perdido.
                         anotherPlay();      // salta a la opción de seguir jugando.
                         endGame = false;
@@ -65,7 +65,7 @@ public class Game {
         System.out.println("El orden de esta partida va a ser el siguiente: ");
         int counter = 1;    // Inicializa el contador
         for (Players player : orderOfPlayers) {   // for each, recorre todos los nombres de la lista de 1 en 1.
-            System.out.println(counter + ".- " + player.getName());  // Imprime el nombre de la lista.
+            System.out.println(counter + ".- " + player.getNAME());  // Imprime el nombre de la lista.
             counter++; // incrementa el contador, no es necesario contador, solo lo utilizo para poner un índice a los nombres por estética.
         }
         System.out.println();
@@ -75,7 +75,7 @@ public class Game {
      * Pregunta si quieres jugar otra partida o salir del juego, si la respuesta es si inicializa las variables del juego
      */
     public static void anotherPlay() {
-        System.out.println("El juego consta de varias partidas, los resultados del Juego se mostraran al salir.\n");
+        System.out.println("\nEl juego consta de varias partidas, los resultados del Juego se mostrarán al salir.");
         //  Muestra el mensaje y espera respuesta numérica.
         int respuesta = CheckValues.correctInteger("\n¿Quieres jugar otra partida? " +
                 "\n\t1.- Jugar otra vez." +

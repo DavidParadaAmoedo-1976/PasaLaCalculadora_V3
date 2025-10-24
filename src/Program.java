@@ -24,7 +24,7 @@ public class Program {
         System.out.println("\nEl resultado del juego es:");
         int contador = 1;
         for(Players player : players){
-            System.out.println(contador + ".- " + player.getName() + " tiene " + player.getLostGames() + " partidas perdidas.");
+            System.out.println(contador + ".- " + player.getNAME() + " tiene " + player.getLostGames() + " partidas perdidas.");
             contador ++;
         }
     }

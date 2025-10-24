@@ -4,12 +4,12 @@
 
 public class Players {
     //  Atributos
-    private String name;
+    private final String NAME;
     private int lostGames;
 
     //  Getters y Setters
-    public String getName() {
-        return name;
+    public String getNAME() {
+        return NAME;
     }
 
     public int getLostGames() {
@@ -17,8 +17,8 @@ public class Players {
     }
 
     //  Constructor
-    public Players(String name) {
-        this.name = name;
+    public Players(String NAME) {
+        this.NAME = NAME;
         this.lostGames = 0;
     }
 
