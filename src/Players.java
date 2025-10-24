@@ -1,3 +1,7 @@
+/**
+ * Objeto que guarda los nombres de los jugadores y el número de partidas perdidas en el juego para cada jugador.
+ */
+
 public class Players {
     //  Atributos
     private String name;

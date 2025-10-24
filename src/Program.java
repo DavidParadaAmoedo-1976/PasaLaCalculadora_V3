@@ -3,7 +3,7 @@ import java.util.Random;
 public class Program {
 
     public static int numberOfPlayers;
-    public static Players[] players;
+    public static Players[] players;    // Inicializa un array de objetos Players(Jugadores)
     public static final int MAX_OF_PLAYERS = 10, MIN_OF_PLAYERS = 2, LIMIT_OF_ROWS = 3 , LIMIT_OF_COLUMNS = 3;
     public static final int[][] MATRIZ = {
             {7, 8, 9},
@@ -33,11 +33,11 @@ public class Program {
      */
     public static void enterNames() {
         numberOfPlayers = CheckValues.correctInteger("Introduce el número de jugadores, desde 2 hasta un máximo de 10: ", MIN_OF_PLAYERS, MAX_OF_PLAYERS,false);
-        players = new Players[numberOfPlayers];
-        for (int i = 0; i < players.length; i++ ){
-            String name = CheckValues.correctName();
-            System.out.println("Nombre leído para el jugador " + (i + 1) + ": " + name);
-            players[i] = new Players(name);
+        players = new Players[numberOfPlayers]; // Crea un Array con la cantidad de jugadores indicada.
+        for (int i = 0; i < players.length; i++ ){      // Recorre el array
+            String name = CheckValues.correctName();    // Solicita el Nombre de cada jugador y comprueba que cumpla unas condiciones.
+            System.out.println("Nombre leído para el jugador " + (i + 1) + ": " + name); // Muestra el nombre que se introdujo.
+            players[i] = new Players(name);     // Guarda el nombre en la posición indicada por i.
         }
     }
 

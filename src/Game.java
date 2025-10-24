@@ -15,39 +15,40 @@ public class Game {
      */
     public static void play() {
         boolean endGame = true;
-        clear();
+        clear(); // Limpia la pantalla de la consola.
         orderOfPlayers = Program.shufflePlayers(); // Desordenar antes de cada partida
-        OrderPlayers();
+        OrderPlayers();                            // Muestra el orden de los jugadores en esta partida.
+        // Guarda en maxNumber el número introducido por el usuario, despues de comprobar que esté dentro del rango y que sea un entero, el true le indica que acepte el -1 para hacerlo aleatorio.
         maxNumber = CheckValues.correctInteger("Introduce el límite para la partida, debe estar entre 10 y 99, o pulsa -1 para que el juego decida una cifra aleatoria: ", LIMIT_MIN, LIMIT_MAX, true);
-        System.out.println("El número máximo es " + maxNumber);
+        System.out.println("El número límite para finalizar la partida  es :" + maxNumber); // Muestra el número en el que va a finalizar la partida.
         while (endGame) {
             for (Players orderOfPlayer : orderOfPlayers) { // Recorre todos los elementos del array "orderOfPlayer"
-                Program.showMatrix();
+                Program.showMatrix();   // Muestra la matriz de números.
                 System.out.println();
-                mensajeInfo();
-                System.out.println("\nEs el turno de " + orderOfPlayer.getName() + ".\n");
+                mensajeInfo();          // Muestra la información de la partida
+                System.out.println("\nEs el turno de " + orderOfPlayer.getName() + ".\n");  // Muestra el nombre del jugador que está jugando.
+                // Recibe el número en juego del jugador que esta en turno en ese momento.
                 int numberAtStake = CheckValues.correctInteger("Introduce un número del 1 al 9 para jugar: ", NUM_MIN_PLAY, NUM_MAX_PLAY,false);
-                if (lastNumber == 0) {
+                if (lastNumber == 0) { //si el último número es 0 indica que es el primer número introducido, no comprueba, solo iguala el último número y el total, al número introducido.
                     lastNumber = numberAtStake;
                     totalInPlay = numberAtStake;
                 } else {
-                    while (!CheckValues.comprobarSiSonValidos(lastNumber, numberAtStake)) {
+                    while (!CheckValues.comprobarSiSonValidos(lastNumber, numberAtStake)) { // Si no es el primer número comprueba que cumpla las condiciones del juego.
                         numberAtStake = CheckValues.correctInteger("Número no valido, prueba otro: ", NUM_MIN_PLAY, NUM_MAX_PLAY,false);
                     }
-                    totalInPlay = totalInPlay + numberAtStake;
-                    lastNumber = numberAtStake;
-                    if (totalInPlay >= maxNumber) {
+                    totalInPlay = totalInPlay + numberAtStake; //suma el número ya comprobado al total del juego.
+                    lastNumber = numberAtStake;     // Indica que ahora este número sera el último introducido, para la comparación en el turno siguiente.
+                    if (totalInPlay >= maxNumber) { // Comprueba si el total del juego es mayor o igual al número del límite de la partida.
                         clear();
                         mensajeInfo();
-                        System.out.println("\nFin de la partida, " + orderOfPlayer.getName() + " ha perdido la partida.");
-                        orderOfPlayer.addLostGames();
-                        anotherPlay();
+                        System.out.println("\nFin de la partida, " + orderOfPlayer.getName() + " ha perdido la partida.");  // informa de quien ha perdido la partida si el total del juego a rebasado el límite.
+                        orderOfPlayer.addLostGames();   // Añade una partida perdida en el contador del jugador que ha perdido.
+                        anotherPlay();      // salta a la opción de seguir jugando.
                         endGame = false;
                     }
                 }
             }
         }
-
     }
 
     /**
@@ -69,16 +70,17 @@ public class Game {
      * Pregunta si quieres jugar otra partida o salir del juego, si la respuesta es si inicializa las variables del juego
      */
     public static void anotherPlay() {
+        //  Muestra el mensaje y espera respuesta numérica.
         int respuesta = CheckValues.correctInteger("\n¿Quieres jugar otra partida? " +
                 "\n\t1.- Jugar otra vez." +
                 "\n\t0.- Salir" +
                 "\nElige opción: ", 0, 1, false);
         if (respuesta == 0) {
-            Program.printData();
-            System.exit(0);
+            Program.printData(); // Muestra el resultado del juego.
+            System.exit(0); // Sale del juego en estado 0 (Sin fallos de ejecución)
         } else {
-            lastNumber = 0;
-            totalInPlay = 0;
+            lastNumber = 0; // Inicializa el último número a 0 para otra partida.
+            totalInPlay = 0;    // Inicializa el total a 0 para otra partida.
             play(); // Jugar una partida
         }
     }
@@ -87,7 +89,9 @@ public class Game {
      * Mensaje de información del juego.
      */
     private static void mensajeInfo() {
-        System.out.println("El último número es |  " + lastNumber + "  | el total esta en |  " + totalInPlay + "  | el juego finaliza en |  " + maxNumber + "  |");
+        System.out.println("El último número es: " + lastNumber +
+                           "\nEl total esta en: " + totalInPlay +
+                           "\nEl juego finaliza en: " + maxNumber);
     }
 
     /**
