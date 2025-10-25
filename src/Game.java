@@ -17,7 +17,7 @@ public class Game {
         boolean endGame = true;
         clear(); // Limpia la pantalla de la consola.
         orderOfPlayers = Program.shufflePlayers(); // Desordenar antes de cada partida
-        OrderPlayers();                            // Muestra el orden de los jugadores en esta partida.
+        orderPlayers();                            // Muestra el orden de los jugadores en esta partida.
         // Guarda en maxNumber el número introducido por el usuario, despues de comprobar que esté dentro del rango y que sea un entero, el true le indica que acepte el -1 para hacerlo aleatorio.
         maxNumber = CheckValues.correctInteger("Introduce el límite para la partida, debe estar entre 10 y 99, o pulsa -1 para que el juego decida una cifra aleatoria: ", LIMIT_MIN, LIMIT_MAX, true);
         System.out.println("El número límite para finalizar la partida  es: " + maxNumber); // Muestra el número en el que va a finalizar la partida.
@@ -59,7 +59,7 @@ public class Game {
     /**
      * Muestra en consola el orden en el que entraran los jugadores en juego.
      */
-    private static void OrderPlayers() {
+    private static void orderPlayers() {
         System.out.println("Para que el juego sea mas ameno se desordenará el orden de los jugadores en cada partida\n" +
                 "                            Hasta que termine el juego\n");
         System.out.println("El orden de esta partida va a ser el siguiente: ");

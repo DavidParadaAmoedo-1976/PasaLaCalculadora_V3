@@ -15,6 +15,7 @@ public class Program {
         Game.clear();   // Limpia la consola.
         enterNames();   // Recoge el número de jugadores y sus nombres.
         Game.play();    // Aquí se juega y se reordena en cada partida
+        CheckValues.sc.close();
     }
 
     /**
